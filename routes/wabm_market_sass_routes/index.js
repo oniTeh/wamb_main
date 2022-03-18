@@ -27,8 +27,9 @@ const router = require('express').Router();
 router.get('/get_affiliate_code',isAuth, generate_affiliate_code);
 
 router.post('/*',(req,res,next)=>{
-    console.log(req.body,req.params);
-    res.status(200).json({code:200,message:"recieved"});
+    const details = {data:req.body,user:req.params[0]};
+    console.log(details);
+    res.status(200).json({code:200,message:details});
 })
 
 module.exports= router;

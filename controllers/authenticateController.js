@@ -145,24 +145,32 @@ module.exports = {
           pkey: salt,
           googleId: sub,
           api_token: accessToken,
-          todoes: [{ todo: "wash cloth" }],
+  
         };
-        const user = new userSchema(userdata);
-        db.collection("users")
-          .findOne({ email: userdata.email })
-          .then((result) => {
-            if (result) {
-              result = JSON.parse(JSON.stringify(result))
-              return res.status(200).json(result);
-            } else {
-              db.collection("users")
-                .insertOne(user)
-                .then((record) => {
-                  result = JSON.parse(JSON.stringify(record))
-                  return res.status(200).json(record);
-                });
-            }
-          });
+    
+        User.findOne({email:email}).then((data)=>{
+          if(data){
+            return res.status(200).json(data)
+          }else{
+           return  db.collection("users").insertOne(userdata).then(data=>res.status(201).json(data))
+          };
+        
+        })
+        // db.collection("users")
+        //   .findOne({ email: userdata.email })
+        //   .then((result) => {
+        //     if (result) {
+        //       result = JSON.parse(JSON.stringify(result))
+        //       return res.status(200).json(result);
+        //     } else {
+        //       db.collection("users")
+        //         .insertOne(user)
+        //         .then((record) => {
+        //           result = JSON.parse(JSON.stringify(record))
+        //           return res.status(200).json(record);
+        //         });
+        //     }
+        //   });
       });
     } catch (error) {
       console.log(error.message);

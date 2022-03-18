@@ -23,7 +23,7 @@ module.exports = {
 //using configuring session in app after connection
         app.use(session({
             secret:'blablabla',
-            resave:false,
+            resave:true,
             store: sessionStore,
             saveUninitialized:true,
             cookie:{maxAge:1000 *60*60*24}//one day

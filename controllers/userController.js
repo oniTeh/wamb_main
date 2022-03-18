@@ -41,12 +41,12 @@ app.get('/register',(req,res)=>{
 
 
 app.get("/profile",isAuth, erro_changer,async (req,res,done)=>{
+    const {insertedId,_id,api_token,email,googled,phonenumber,name,picture,code}  = req.session?.passport.user
+    const web_hook_url = code?.privateKey;
 
-
-    const {insertedId,_id,api_token,email,googled,phonenumber,name,picture}  = req.session?.passport.user
     try {
             if(email){
-                res.render('my-profile',{_id,api_token,email,googled,phonenumber,name,picture})//)
+                res.render('my-profile',{_id,api_token,email,googled,phonenumber,name,picture,web_hook_url})//)
             }else{
                 return res.redirect('/')
             }

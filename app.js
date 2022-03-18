@@ -23,6 +23,7 @@ const authRoutes = require('./routes/auth-routes');
 const stream = require('./routes/stream');
 const dbstreaming = require('./routes/dbStreaming');
 const contact_route = require('./routes/contact_route/contactRoute')
+const wamb_market_sass_routes = require('./routes/wabm_market_sass_routes/index')
 // const whatsapp_route = require('./routes/whatsapp_route/whatsapp_routes')
 //::::::::::require controloers::::::::::::::
 
@@ -79,16 +80,19 @@ app.use((req,res,next)=>{
 app.use('/auth',authRoutes);
 //google contact api_controller
 app.use('/profile/contact', contact_route)
+
+app.use('/server',wamb_market_sass_routes)
 // app.use('/whatsapp',whatsapp_route)
 //sreaming route
 app.use('/dbs', dbstreaming);
 app.use('/stream',stream)
 
- app.use((req,res,next)=>{
-  // console.log(req.body);
-  //  console.log(req.session);
-
-    next();
+ app.use((error,req,res,next)=>{
+if(error){
+  console.log(error.message);
+  next(null)
+}
+    next(null);
 });
 
 

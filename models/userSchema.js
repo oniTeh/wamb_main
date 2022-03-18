@@ -18,13 +18,8 @@ const userSchema = new mongoose.Schema({
   id_token:{type:String,default:""},
   scope:{type:String,default:""},
   picture:String,
-  code:{type:String,default:""},
+  code:{type:Object,default:{_id:"",wamb_apikey:'',wamb_hash:'',hooks:''}},
   gtoken_expiry_date:{type:Number},
-  todoes: [
-    Usertodo.schema
-],
-videos:[
-  UserVideos.schema
-]
+
 })
-module.exports = mongoose.model('userSchema', userSchema);
+module.exports = userSchema// mongoose.model('userSchema', userSchema);

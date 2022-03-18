@@ -2,7 +2,7 @@ const passport = require("passport");
 const { google } = require("googleapis");
 const people = google.people("v1");
 
-//all google contact groups or labels
+//all google  groups or labels Opperations
 const getGroups = () => {
   try {
     return people.contactGroups
@@ -19,38 +19,58 @@ const getGroups = () => {
     return error;
   }
 };
-const create_contact = async () => {
-  //check if grpupname exit if not create the group name
 
- const createdContact =  await people.people
+//:::::::::::::::get all contact in a givengroup:::::::::::::::::::://
+const getContactsInGroup = (resourceName) => {
+  try {
+    return people.contactGroups
+      .get({
+        resourceName: resourceName,
+        maxMembers: 1000,
+      })
+      .then((contact) => {
+        let data = JSON.parse(JSON.stringify(contact));
+        return data.data;
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//::::::::::::::::::Contact Opertations::::::::::::::::://
+
+const create_contact = async (contactDetails) => {
+  const { phoneNumber, canonical_phoneNumber, givenName, familyName, email } =
+    contactDetails;
+  const createdContact = await people.people
     .createContact({
       requestBody: {
         phoneNumbers: [
           {
-            value: "070485858",
+            value: phoneNumber,
           },
           {
-            canonicalForm: "+23470485858",
+            canonicalForm: canonical_phoneNumber,
           },
         ],
         names: [
           {
-            givenName: "joshua",
-            familyName: "dogubo",
+            givenName: givenName,
+            familyName: familyName,
           },
         ],
         emailAddresses: [
           {
-            value: `jayboy1990@gmail.com`,
+            value: email,
           },
         ],
       },
     })
-    .then((data) =>(JSON.parse(JSON.stringify(data.data))));
-    return createdContact;
+    .then((data) => JSON.parse(JSON.stringify(data.data)));
+  return createdContact;
 };
 
-//all google contact list
+//:::::::::::::::all google contact list::::::::::::::://
 const getAllGoogleContacts = () => {
   try {
     return people.people.connections
@@ -68,24 +88,7 @@ const getAllGoogleContacts = () => {
   }
 };
 
-//get all contact ina givengroup
-const getContactsInGroup = (resourceName) => {
-  try {
-    return people.contactGroups
-      .get({
-        resourceName: resourceName,
-        maxMembers: 1000,
-      })
-      .then((contact) => {
-        let data = JSON.parse(JSON.stringify(contact));
-        return data.data;
-      });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-//get a  contact usng its googleid
+//::::::::::::::get a  contact usng its googleid::::::::::::::://
 const getPersonContactDetails = async (personId) => {
   try {
     return await people.people
@@ -102,15 +105,90 @@ const getPersonContactDetails = async (personId) => {
   }
 };
 
+//:::::::::::::::::modify a given Gruop insert members::::::::::::::::::::://
+const modifygroupMembers = async (values) => {
+  const {resourceName,resourceNamesToRemove,resourceNamesToAdd}= values;
+  try {
+    return await people.contactGroups.members
+      .modify({ 
+        resourceName,
+        requestBody: {
+          resourceNamesToAdd: [resourceNamesToAdd],
+          resourceNamesToRemove: [resourceNamesToRemove],
+        },
+      })
+      .then((data) => {
+        console.log(data.data);
+        return data;
+      });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+//:::::::::::::::::modify a given Gruop insert members::::::::::::::::::::://
+const deleteGroupMembership = async () => {
+
+  try {
+    return await people.contactGroups.members
+      .modify({
+        resourceName: contactGroupResourcesName,
+        requestBody: {
+          resourceNamesToAdd: [],
+          resourceNamesToRemove: [contactsIds],
+        },
+      })
+      .then((data) => {
+        console.log(data.data);
+        return data;
+      });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 module.exports = {
-  //create google contact api
-  create_contact: (req, res) => {
+  removeGruopMember: async (req, res, next) => {
+
     try {
-      create_contact().then(data=>console.log(JSON.stringify(data)));
+      //get all current user groups
+      await getGroups().then((data) => console.log(data));
+      return await deleteGroupMembership().then((data) =>
+        res.status(200).json({ code: 200, data: data })
+      );
+    } catch (error) {}
+  },
+
+  modifygroup: async (req, res, next) => {
+  
+    const{ contactId,contactGroupResourcesName,action } = req.query ;
+    console.log(req.query)
+    try {
+       await modifygroupMembers({resourceName:contactGroupResourcesName, resourceNamesToAdd:[(action=="add"?contactId:null)], resourceNamesToRemove:[(action=="remove"?contactId:null)]
+      }).then((data) =>{
+        if(data) { 
+          return res.status(200).json({code:200,data:data});
+      }})
     } catch (error) {
-      console.log(error);
+     return  res.status(200).json({ code: 400, data: error })
     }
-    res.status(200).json({ code: 200, data: "hello world" });
+  },
+
+  create_contact: async (req, res, done) => {
+    try {
+      let userData = {
+        email: "gabriel@gmai.com",
+        phoneNumber: "09023085234",
+        canonical_phoneNumber: "+2349023085234",
+        givenName: "abcd",
+        familyName: "cvdf",
+      };
+      return await create_contact(userData).then((data) =>
+        res.status(200).json(JSON.stringify(data))
+      );
+    } catch (error) {
+      done(error);
+    }
   },
 
   getContacts: async (req, res, done) => {

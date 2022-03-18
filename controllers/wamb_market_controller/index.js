@@ -12,7 +12,7 @@ const generate_affiliate_code = (req, res, done) => {
           _id: req.session.passport.user._id,
           wamb_apikey: salt,
           privateKey: hash,
-          hooks:`${process.env.BASEURL}/${req.session.passport.user?._id}/${hash}`
+          hooks:`${process.env.BASEURL}/server/${req.session.passport.user?._id}/${hash}`
         };
         result
           .save()

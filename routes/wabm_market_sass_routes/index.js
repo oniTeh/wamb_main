@@ -24,9 +24,11 @@ const router = require('express').Router();
 // //batchget perticular contacts with their resoureName 
 
 
-router.get('/get_affiliate_code',isAuth, generate_affiliate_code)
-router.get('/*',isAuth,(req,res,next)=>{
-    console.log(req.params);
+router.get('/get_affiliate_code',isAuth, generate_affiliate_code);
+
+router.post('/*',(req,res,next)=>{
+    console.log(req.body,req.params);
     res.status(200).json({code:200,message:"recieved"});
 })
+
 module.exports= router;

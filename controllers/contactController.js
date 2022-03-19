@@ -39,7 +39,7 @@ const getContactsInGroup = (resourceName) => {
 
 //::::::::::::::::::Contact Opertations::::::::::::::::://
 
-const create_contact = async (contactDetails) => {
+ createGoogleContact = async (contactDetails) => {
   const { phoneNumber, canonical_phoneNumber, givenName, familyName, email } =
     contactDetails;
   const createdContact = await people.people
@@ -148,6 +148,8 @@ const deleteGroupMembership = async () => {
 };
 
 module.exports = {
+
+  createGoogleContact:createGoogleContact,
   removeGruopMember: async (req, res, next) => {
 
     try {
@@ -183,7 +185,7 @@ module.exports = {
         givenName: "abcd",
         familyName: "cvdf",
       };
-      return await create_contact(userData).then((data) =>
+      return await createGoogleContact(userData).then((data) =>
         res.status(200).json(JSON.stringify(data))
       );
     } catch (error) {

@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema({
   access_token:{type:String,default:""},
   id_token:{type:String,default:""},
   scope:{type:String,default:""},
+  contacts:{type:Array,default:[]},
   picture:String,
   code:{type:Object,default:{_id:"",wamb_apikey:'',wamb_hash:'',hooks:''}},
   gtoken_expiry_date:{type:Number},

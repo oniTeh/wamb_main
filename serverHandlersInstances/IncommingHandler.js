@@ -14,14 +14,6 @@ class Incommingdata {
 
 }
 
-// function erro_changer (req,res,next) {
-
-//   res.success =  new Messages(200,"success");
-//    res.failure =  new Messages(400,"failled");
-//     //console.log(success, failure);
-//     next(null,{success:res.success,failure:res.failure})
-// }
-
 module.exports = {
   Incommingdata: Incommingdata,
 };

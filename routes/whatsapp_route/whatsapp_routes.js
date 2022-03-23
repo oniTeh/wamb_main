@@ -2,13 +2,15 @@
 const passport = require("passport");
 const{ isAuth,isGoogleSignedIn }= require('../../lib/authmiddleware')
 // const {getContacts,getLabel,contactInLabel,getPerson,create_group} = require('../../controllers/contactController')
-const {initialiseUserclient}=require('../../controllers/whatsappController.ts')
+const {whatsappSerever} = require('../../controllers/whatsapp_controllers/whatsapp_server_controller')
 
 
 
 const router = require('express').Router();
 // //get all gcontacts 
-router.get('/',initialiseUserclient);
+router.get('/',whatsappSerever,(req,res,next)=>{
+ res.status(200).json({})
+});
 // //create new contact route
 // router.get('/label',isGoogleSignedIn,isAuth,getLabel);
 // //get contacts in a label

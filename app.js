@@ -24,7 +24,7 @@ const stream = require('./routes/stream');
 const dbstreaming = require('./routes/dbStreaming');
 const contact_route = require('./routes/contact_route/contactRoute')
 const wamb_market_sass_routes = require('./routes/wabm_market_sass_routes/index')
-// const whatsapp_route = require('./routes/whatsapp_route/whatsapp_routes')
+const whatsapp_route = require('./routes/whatsapp_route/whatsapp_routes')
 //::::::::::require controloers::::::::::::::
 
 var todoController = require('./controllers/todoController');// access files and functions in todocontrolers
@@ -82,7 +82,7 @@ app.use('/auth',authRoutes);
 app.use('/profile/contact', contact_route)
 
 app.use('/server',wamb_market_sass_routes)
-// app.use('/whatsapp',whatsapp_route)
+app.use('/whatsapp',whatsapp_route)
 //sreaming route
 app.use('/dbs', dbstreaming);
 app.use('/stream',stream)

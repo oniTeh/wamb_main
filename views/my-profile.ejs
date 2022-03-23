@@ -19,7 +19,7 @@
         <!-- ============================================================== -->
         <!-- Preloader - style you can find in spinners.css -->
         <!-- ============================================================== -->
-        <div id="preloader"><div class="preloader"><span></span><span></span></div></div>
+        <!-- <div id="preloader"><div class="preloader"><span></span><span></span></div></div> -->
 		
         <!-- ============================================================== -->
         <!-- Main wrapper - style you can find in pages.scss -->
@@ -92,13 +92,14 @@
 											</div>
 											
 											<div class="form-group col-md-6">
-												<label>Your Api | | web_hook link</label>
-												<input disabled type="text" class="form-control" value=<%=web_hook_url%>>
+												<label>Your Api | | web_hook link <a href="/server/get_affiliate_code" class="badge badge-info">generate Link</a> </label>	
+												<input disabled type="text"  class="form-control" value=<%=web_hook_url%>> 
 											</div>
 											
 											<div class="form-group col-md-6">
 												<label>Phone</label>
 												<input type="text" class="form-control" value='<%=phonenumber %>'>
+												
 											</div>
 											
 											<div class="form-group col-md-6">

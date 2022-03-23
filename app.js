@@ -77,6 +77,7 @@ app.use((req,res,next)=>{
   
 })
 
+
 app.use('/auth',authRoutes);
 //google contact api_controller
 app.use('/profile/contact', contact_route)
@@ -87,13 +88,7 @@ app.use('/whatsapp',whatsapp_route)
 app.use('/dbs', dbstreaming);
 app.use('/stream',stream)
 
- app.use((error,req,res,next)=>{
-if(error){
-  console.log(error.message);
-  next(null)
-}
-    next(null);
-});
+
 
 
 
@@ -124,7 +119,13 @@ require('./config/passport');
 // calling todocontroller with full (express)app
 userController(app);
 todoController(app);
-
+app.use((error,req,res,next)=>{
+  if(error){
+    console.log(error.message);
+    next(null)
+  }
+      next(null);
+  });
 const port = process.env.PORT||3000;
 app.listen(port)
 console.log("listening to port",port);

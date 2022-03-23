@@ -33,7 +33,8 @@ const { google } = require("googleapis");
 router.get('/get_affiliate_code',isAuth, generate_affiliate_code);
 
 router.post('/*',(req,res,next)=>{
-console.log(req.body);
+console.log(req);
+
   // const data =  new Incommingdata(req.body,req.params[0]);
   //  const validateRequest = (incomingdata)=>{
   //   try{

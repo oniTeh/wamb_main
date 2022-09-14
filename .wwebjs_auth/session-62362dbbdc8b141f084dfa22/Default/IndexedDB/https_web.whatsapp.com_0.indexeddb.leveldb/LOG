@@ -1,0 +1,33 @@
+2022/04/01-18:30:51.140 18f0 Reusing MANIFEST C:\oniTech\wamb_main\.wwebjs_auth\session-62362dbbdc8b141f084dfa22\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2022/04/01-18:30:51.282 18f0 Recovering log #3
+2022/04/01-18:30:51.588 18f0 Reusing old log C:\oniTech\wamb_main\.wwebjs_auth\session-62362dbbdc8b141f084dfa22\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000003.log 
+2022/04/01-18:32:40.261 1590 Level-0 table #5: started
+2022/04/01-18:32:40.819 1590 Level-0 table #5: 1163977 bytes OK
+2022/04/01-18:32:40.899 1590 Delete type=0 #3
+2022/04/01-18:32:55.516 18f0 Level-0 table #7: started
+2022/04/01-18:32:55.958 18f0 Level-0 table #7: 1106174 bytes OK
+2022/04/01-18:32:56.162 18f0 Delete type=0 #4
+2022/04/01-18:32:56.179 18f0 Compacting 1@1 + 1@2 files
+2022/04/01-18:32:56.673 18f0 Generated table #8@1: 21484 keys, 1122519 bytes
+2022/04/01-18:32:56.674 18f0 Compacted 1@1 + 1@2 files => 1122519 bytes
+2022/04/01-18:32:56.811 18f0 compacted to: files[ 0 0 1 0 0 0 0 ]
+2022/04/01-18:33:15.811 dc0 Level-0 table #10: started
+2022/04/01-18:33:16.211 dc0 Level-0 table #10: 1192224 bytes OK
+2022/04/01-18:33:16.307 dc0 Delete type=2 #5
+2022/04/01-18:33:16.307 dc0 Delete type=0 #6
+2022/04/01-18:33:16.307 dc0 Delete type=2 #7
+2022/04/01-18:33:16.445 23ac Compacting 1@1 + 1@2 files
+2022/04/01-18:33:17.008 23ac Generated table #11@1: 31949 keys, 1797633 bytes
+2022/04/01-18:33:17.008 23ac Compacted 1@1 + 1@2 files => 1797633 bytes
+2022/04/01-18:33:17.063 23ac compacted to: files[ 0 0 1 0 0 0 0 ]
+2022/04/01-18:33:17.064 23ac Delete type=2 #8
+2022/04/01-18:33:17.064 23ac Delete type=2 #10
+2022/04/01-21:19:11.924 2e40 Level-0 table #13: started
+2022/04/01-21:19:12.514 2e40 Level-0 table #13: 1117224 bytes OK
+2022/04/01-21:19:12.725 2e40 Delete type=0 #9
+2022/04/01-21:19:13.792 da0 Compacting 1@1 + 1@2 files
+2022/04/01-21:19:14.802 da0 Generated table #14@1: 40735 keys, 2167470 bytes
+2022/04/01-21:19:14.802 da0 Compacted 1@1 + 1@2 files => 2167470 bytes
+2022/04/01-21:19:14.902 da0 compacted to: files[ 0 0 1 0 0 0 0 ]
+2022/04/01-21:19:14.904 da0 Delete type=2 #11
+2022/04/01-21:19:14.904 da0 Delete type=2 #13

@@ -1,7 +1,6 @@
 
 (function ($) {
     "use strict";
-
     /*==================================================================
     [ Focus Contact2 ]*/
     $('.input100').each(function(){
@@ -79,6 +78,6 @@
         $(thisAlert).removeClass('alert-validate');
     }
 
-   
+  
 
 })(jQuery);

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const UserVideos = new mongoose.Schema({
+const VideoSchema = new mongoose.Schema({
     title:String,
     year:Number,
     rated:String,
@@ -26,4 +26,4 @@ const UserVideos = new mongoose.Schema({
 //"imdb":{"id":"tt0120915","rating":6.5,"votes":494267},"tomato":null,"metacritic":51,
 //"awards":{"wins":17,"nominations":59,"text":"Nominated for 3 Oscars. Another 17 wins & 59 nominations."},
 
-module.exports = mongoose.model('userVideos', UserVideos)
+module.exports = mongoose.model('Video', VideoSchema)

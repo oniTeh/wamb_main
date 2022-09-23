@@ -1,15 +1,10 @@
 // contain all routh
 const passport = require("passport");
-const{ isAuth,isGoogleSignedIn }= require('../../lib/authmiddleware')
+const{ isAuth}= require('../../lib/authmiddleware')
 const {generate_affiliate_code} = require('../../controllers/wamb_market_controller/index')
 const {Incommingdata} = require('../../serverHandlersInstances/IncommingHandler')
-const { validatepublicKey } = require("../../lib/wambCrypt");
-const connection = require("../../config/dbconnection"); //getting to connect to perform action
-const User = connection.models.User; //all seaches access user db model and find matches
 const router = require('express').Router();
 require('dotenv').config();
-const {createGoogleContact} = require('../../controllers/contactController');
-const { google } = require("googleapis");
 // //get all gcontacts 
 // router.get('/',isGoogleSignedIn,isAuth,getContacts);
 // //create new contact route

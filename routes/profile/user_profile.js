@@ -7,7 +7,7 @@ module.exports= {
 
     get_user_profile: async (req,res)=>{
         try {
-            const {_id,api_token,email,googleId}  = req.session.passport.user;
+            const {_id,api_token,email,googleId}  = req.session.passport.userData;
             return  await User.findById({_id}).then(data=>data);
         } catch (error) {
             console.log(error);

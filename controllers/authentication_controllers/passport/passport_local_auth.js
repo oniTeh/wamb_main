@@ -1,11 +1,11 @@
-const passport = require('passport');
-const localStrategy = require('passport-local').Strategy;
-const connection= require('../config/dbconnection');
-const User = connection.models.User
-const { validatePassword }= require('../lib/passwordUtil');
-//const { connection } = require('./conection');
 
-const myField = {
+const passport = require('passport');
+const { validatePassword } = require('../../../lib/passwordUtil');
+const { User } = require('../../../models/userSchema');
+const localStrategy = require('passport-local').Strategy;
+
+
+const feilds = {
     usernameField: 'email',
     passwordfield: 'password'
 }
@@ -15,7 +15,7 @@ const myField = {
 const verifyCallback = function (username,password,done){
     username.toString(),password.toString();
     User.findOne({email:username}).then((user)=>{
-        if(!user) return done(null,false);
+        if(!(user && user?.password && user?.pkey)) return done(null,false);
         let pword = user.password;
         let pkey = user.pkey;
         
@@ -32,15 +32,28 @@ const verifyCallback = function (username,password,done){
 
 }
 
-const strategy = new localStrategy(myField, verifyCallback)
-passport.use(strategy)
+const strategy = new localStrategy(feilds, verifyCallback)
 
+passport.use(strategy)
 passport.serializeUser((user, done)=>{
-    done(null, user.id);
+    done(null, user);
+
 })
 
 passport.deserializeUser((userId, done)=>{
-User.findById(userId).then((user)=>{
+User.findById(userId).then((user)=>{  
     done(null, user);
 
 }).catch(err => done(err))});
+
+const login = (passport.authenticate('local',{successRedirect:'/dashboard',failureRedirect:'/'}));
+
+const logout = (req,res)=>{
+    req.logout();
+   return  res.redirect('/');
+}
+
+module.exports = {
+login,
+logout
+}

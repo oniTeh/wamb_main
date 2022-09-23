@@ -1,5 +1,6 @@
 // contain all routh
-const {login,googleoAuthentry,googleoAuth2Callback} = require('../controllers/authenticateController');
+const { googleoAuthentry } = require('../config/passport/passport_google_auth');
+// const {login,googleoAuth2Callback} = require('../controllers/authenticateController');
 
 const router = require('express').Router();
 //auth login
@@ -8,6 +9,5 @@ router.get('/login',(req,res)=>{
  });
 
 //auth with googles
-router.get('/google',googleoAuthentry)
 
 module.exports= router;

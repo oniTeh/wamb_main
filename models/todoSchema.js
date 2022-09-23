@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const UserTodo = new mongoose.Schema({
+const todoSchema = new mongoose.Schema({
     item:String,
     dateCreated: {type:String,default:Date},
     time: String,
@@ -9,4 +9,4 @@ const UserTodo = new mongoose.Schema({
 
 })
 
-module.exports = mongoose.model('userTodo', UserTodo)
+module.exports = mongoose.model('Todo', todoSchema)

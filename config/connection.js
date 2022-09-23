@@ -9,6 +9,7 @@ async function connection(app) {
   const dbOption = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
   };
 
   try {

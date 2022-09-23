@@ -6,25 +6,27 @@ const handle_change_password = async (req,res,done)=>{
     const {old_password,new_password,confirm_password} = req.body
     const {password,pkey} = req.session.passport.user
 
-    try {
-    
-            let validata_old = await validatePassword(old_password,password,pkey)//old password, password_hash,password_salt
-            if(!validata_old)throw({type: warn_alert, message:' Pleasee your previous password doesn\'t match'})
-            if(new_password !== confirm_password)throw({type: warn_alert, message:' Pleasee your new password doesn\'t match'})
+            let validata_old = await validatePassword( old_password,password,pkey)//old password, password_hash,password_salt
+            if(!validata_old)return res.status(400).json({type: warn_alert, message:' Pleasee your previous password doesn\'t match'})
+            if(new_password !== confirm_password) return res.status(300).json({type: warn_alert, message:' Pleasee your new password doesn\'t match'})
+            
             let {hash,salt} = await genPassword(new_password)
-            let user = await User.findOneAndUpdate({_id:req.session.passport.user._id},{password:hash,pkey:salt})
-            if(!user)throw({type: fail_alert , message:' Pleasee your new password doesn\'t match'}) 
-            throw({type:success_alert,message:'password changed successfully'})
+             User.findById({_id:req.session.passport.user._id}).then(data=>{
+                data.password = hash
+                data.pkey = salt
+                data.save().then(p=>{
+                    return res.status(200).json({type: success_alert, message:' Password changed successfully'})
+                })
+            return done(null,data)
+            }).catch(err=>{
+                
+            res.status(500).json({type: server_error, message:' Server error'})
+            done(err)
 
-    } catch (error) {
-        // console.log(error)
-         new done (error.message)
-        
-    }
-
-    
-    }
-
+            })
+        }
     module.exports = {
         handle_change_password
     }
+
+

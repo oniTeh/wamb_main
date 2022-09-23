@@ -1,0 +1,43 @@
+{
+  "result": { "n": 1, "ok": 1 },
+  "connection": {
+    "_events": {},
+    "_eventsCount": 4,
+    "id": 1,
+    "address": "127.0.0.1:27017",
+    "bson": {},
+    "socketTimeout": 0,
+    "host": "127.0.0.1",
+    "port": 27017,
+    "monitorCommands": false,
+    "closed": false,
+    "destroyed": false,
+    "helloOk": true,
+    "lastIsMasterMS": 3
+  },
+  "ops": [
+    {
+      "phonenumber": 23341234657,
+      "is_active": false,
+      "googleId": "googleid",
+      "api_token": "api_token",
+      "access_token": "",
+      "id_token": "",
+      "scope": "",
+      "contacts": [],
+      "code": { "_id": "", "wamb_apikey": "", "wamb_hash": "", "hooks": "" },
+      "_id": "63242149dc379362649ca60c",
+      "username": "ab",
+      "lastname": "Mamuzo",
+      "firstname": "Dogubo",
+      "name": "Dogubo Mamuzo",
+      "email": "ab@gmail.com",
+      "password": "2303d97c4eee2831ac5cc5ab1effe21f84640e05bb43ade07b1d28e2754a622e3e1c400c567f4e4faddd2863546383c0c0b1ff540e50b04dae84f1a129f5d2b8",
+      "pkey": "8044cafc5c61f94291f0cc1f52cd35139521226d400114615a8537f1b397596b"
+    }
+  ],
+  "insertedCount": 1,
+  "insertedId": "63242149dc379362649ca60c",
+  "n": 1,
+  "ok": 1
+}

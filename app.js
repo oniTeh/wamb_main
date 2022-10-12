@@ -9,7 +9,6 @@ const passport  = require('passport');
 const { google } = require("googleapis");
 const {mysocket} = require('./lib/websocket')
 const {wambSocket,wbs } = require('./controllers/whatsapp_controllers/whatsapp_server_controller')
-error_index_route = require('./routes/error_route/Error_index_route')
 require("dotenv").config()
 wambSocket(app)
 connection(app)
@@ -19,6 +18,8 @@ app.use(passport.session());
 //:::::::::::require rouths:::::::::::::: 
 const auth = require('./routes/auth_route/auth_index');
 const display = require('./routes/display_route/display_index_route')
+error = require('./routes/error_route/Error_index_route')
+
 const bodyParser = require('body-parser');
 
 // const contact_route = require('./routes/contact_route/contactRoute')
@@ -79,7 +80,7 @@ app.use(express.json());
 // ::::::::::user routes:::::::::::
 app.use(display)
 app.use(auth);
-app.use('/*',error_index_route)
+error(app)//pass app to error route
 
 
 

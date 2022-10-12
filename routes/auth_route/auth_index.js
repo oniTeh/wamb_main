@@ -5,7 +5,9 @@ const { googleoAuthentry } = require('../../controllers/authentication_controlle
 const {login,logout} = require('../../controllers/authentication_controllers/passport/passport_local_auth')
 const {register_account} = require('../../controllers/authentication_controllers/registration/register_account')
 const change_password = require('../../controllers/display_controllers/chnage_password')
-error_route = require('../error_route/Error_index_route')
+
+
+
 
 router.get('/auth/google',googleoAuthentry)
 router.get('/google/callback', passport.authenticate('google',{successRedirect:'/dashboard',failureRedirect:'/'}) )
